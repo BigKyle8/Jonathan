@@ -27,10 +27,10 @@
 Preferences prefs;
 
 // --- WiFi credentials ---
-//const char* WIFI_SSID     = "BELL490";      //Home WiFi
-//const char* WIFI_PASSWORD = "61EF9FD54A73";
-const char* WIFI_SSID     = "Eyeballs";
-const char* WIFI_PASSWORD = "Eyeballs2";      //Cell phone hotspot
+const char* WIFI_SSID     = "BELL490";      //Home WiFi
+const char* WIFI_PASSWORD = "61EF9FD54A73";
+//const char* WIFI_SSID     = "Eyeballs";
+//const char* WIFI_PASSWORD = "Eyeballs2";      //Cell phone hotspot
 // --- UDP ---
 const int UDP_PORT = 8888;
 WiFiUDP udp;
@@ -701,7 +701,6 @@ void processSerialCommand(String cmd) {
     SHAKE_FLIP_MS = 75;   SHAKE_AMOUNT = 35;
     HOME_TILT = 173;  HOME_PAN = 90;  HOME_SERVO3_SEARCH = 160;  HOME_SERVO3_TRACK = 0;
     WAKE_DELAY_MS = 100;
-    TRACK_MIN_MS = 5000;  TRACK_MAX_MS = 20000;
     SEARCH_MOVE_MIN = 2000;  SEARCH_MOVE_MAX = 5000;
     SAD_TILT_MIN = 90;  SAD_TILT_MAX = 135;  SAD_PAN_MIN = 40;  SAD_PAN_MAX = 140;
     BLINK_STEP_MS = 35;  BLINK_HOLD_MS = 2000;  SEARCH_DIM_SECS = 30;
@@ -768,8 +767,6 @@ void processSerialCommand(String cmd) {
     Serial.print("home3_track=");     Serial.println(HOME_SERVO3_TRACK);
     Serial.print("wake_delay_ms=");   Serial.println(WAKE_DELAY_MS);
     Serial.println("--- Behaviour Timing ---");
-    Serial.print("track_min_ms=");    Serial.println(TRACK_MIN_MS);
-    Serial.print("track_max_ms=");    Serial.println(TRACK_MAX_MS);
     Serial.print("search_min_ms=");   Serial.println(SEARCH_MOVE_MIN);
     Serial.print("search_max_ms=");   Serial.println(SEARCH_MOVE_MAX);
     Serial.println("--- Search Wander Range ---");
@@ -941,12 +938,6 @@ void processSerialCommand(String cmd) {
     } else if (key == "wake_delay_ms") {
       WAKE_DELAY_MS = constrain(ival, 100, 3000);
       Serial.print("wake_delay_ms = "); Serial.println(WAKE_DELAY_MS);
-    } else if (key == "track_min_ms") {
-      TRACK_MIN_MS = constrain(ival, 500, 60000);
-      Serial.print("track_min_ms = "); Serial.println(TRACK_MIN_MS);
-    } else if (key == "track_max_ms") {
-      TRACK_MAX_MS = constrain(ival, 500, 60000);
-      Serial.print("track_max_ms = "); Serial.println(TRACK_MAX_MS);
     } else if (key == "search_min_ms") {
       SEARCH_MOVE_MIN = constrain(ival, 100, 30000);
       Serial.print("search_min_ms = "); Serial.println(SEARCH_MOVE_MIN);
